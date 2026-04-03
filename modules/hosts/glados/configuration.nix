@@ -100,15 +100,6 @@
           "wheel"
           "dialout"
         ];
-        packages = with pkgs; [
-          kdePackages.kate
-          thunderbird
-          zed-editor
-          gh
-          ghostty
-          claude-code
-          fastfetch
-        ];
       };
 
       # Install firefox.
