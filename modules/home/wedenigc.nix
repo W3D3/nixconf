@@ -29,11 +29,30 @@
               enable = true;
               autosuggestion.enable = true;
               syntaxHighlighting.enable = true;
+              plugins = [
+                {
+                  name = "nix-shell";
+                  src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell";
+                }
+                {
+                  name = "you-should-use";
+                  src = "${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use";
+                }
+                {
+                  name = "zsh-vi-mode";
+                  src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode";
+                }
+                {
+                  name = "zsh-z";
+                  src = "${pkgs.zsh-z}/share/zsh-z";
+                }
+              ];
             };
 
             programs.starship = {
               enable = true;
               enableZshIntegration = true;
+              configFile = ./starship.toml;
             };
 
             programs.home-manager.enable = true;
