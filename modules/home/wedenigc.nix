@@ -20,9 +20,10 @@
               thunderbird
               zed-editor
               gh
-              ghostty
               claude-code
               fastfetch
+              telegram-desktop
+              discord
             ];
 
             programs.zsh = {
@@ -49,10 +50,14 @@
               ];
             };
 
+            programs.ghostty = {
+              enable = true;
+              settings.font-family = "JetBrainsMono Nerd Font Mono";
+            };
+
             programs.starship = {
               enable = true;
               enableZshIntegration = true;
-              configFile = ./starship.toml;
             };
 
             programs.home-manager.enable = true;

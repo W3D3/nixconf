@@ -108,11 +108,31 @@
       # Install firefox.
       programs.firefox.enable = true;
 
+      fonts.packages = [ pkgs.nerd-fonts.jetbrains-mono ];
+      fonts.fontconfig.defaultFonts.monospace = [ "JetBrainsMono Nerd Font Mono" ];
+
       # Allow unfree packages
       nixpkgs.config.allowUnfree = true;
 
       # Enable Flipper Zero support
       hardware.flipperzero.enable = true;
+
+      # Fingerprint reader (Goodix 27c6:5395) via fprintd-tod
+      # services.fprintd = {
+      #   enable = true;
+      #   tod = {
+      #     enable = true;
+      #     driver = pkgs.libfprint-2-tod1-goodix;
+      #   };
+      # };
+
+      # Enable fingerprint auth for login, sudo, and screen unlock
+      # security.pam.services = {
+      #   login.fprintAuth = true;
+      #   sudo.fprintAuth = true;
+      #   sddm.fprintAuth = true;
+      #   kde-fingerprint.fprintAuth = true;
+      # };
 
       # List packages installed in system profile. To search, run:
       # $ nix search wget
