@@ -59,6 +59,18 @@
               ];
             };
 
+            programs.bat.enable = true;
+
+            programs.eza = {
+              enable = true;
+              enableZshIntegration = true;
+            };
+
+            programs.fzf = {
+              enable = true;
+              enableZshIntegration = true;
+            };
+
             programs.mise = {
               enable = true;
               enableZshIntegration = true;
