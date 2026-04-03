@@ -95,12 +95,15 @@
       users.users.wedenigc = {
         isNormalUser = true;
         description = "Christoph Wedenig";
+        shell = pkgs.zsh;
         extraGroups = [
           "networkmanager"
           "wheel"
           "dialout"
         ];
       };
+
+      programs.zsh.enable = true;
 
       # Install firefox.
       programs.firefox.enable = true;

@@ -25,6 +25,17 @@
               fastfetch
             ];
 
+            programs.zsh = {
+              enable = true;
+              autosuggestion.enable = true;
+              syntaxHighlighting.enable = true;
+            };
+
+            programs.starship = {
+              enable = true;
+              enableZshIntegration = true;
+            };
+
             programs.home-manager.enable = true;
           };
       };
