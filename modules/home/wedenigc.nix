@@ -23,6 +23,14 @@
               claude-code
               fastfetch
               gcc
+              gnumake
+              binutils
+              pkg-config
+              autoconf
+              automake
+              libtool
+              cmake
+              patch
               telegram-desktop
               discord
             ];
