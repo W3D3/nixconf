@@ -22,6 +22,7 @@
               gh
               claude-code
               fastfetch
+              gcc
               telegram-desktop
               discord
             ];
