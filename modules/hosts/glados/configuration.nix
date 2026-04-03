@@ -8,6 +8,7 @@
       imports = [
         self.nixosModules.gladosHardware
         self.nixosModules.niri
+        self.nixosModules.homeWedenigc
       ];
 
       nix.settings.experimental-features = [
@@ -131,6 +132,7 @@
         nixd
         nil
         nixfmt
+        package-version-server
 
         usbutils
         qFlipper
