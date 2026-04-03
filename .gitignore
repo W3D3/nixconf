@@ -1,0 +1,26 @@
+# Nix build artifacts
+result
+result-*
+
+# Nix evaluation cache
+.direnv/
+.envrc
+
+# Editor artifacts
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Secrets / sensitive files
+secrets.nix
+secrets/
+*.age
+*.pem
+*.key
+
+# macOS
+.DS_Store
+
+.claude/
