@@ -50,6 +50,11 @@
               ];
             };
 
+            programs.mise = {
+              enable = true;
+              enableZshIntegration = true;
+            };
+
             programs.ghostty = {
               enable = true;
               settings.font-family = "JetBrainsMono Nerd Font Mono";
