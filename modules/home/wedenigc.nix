@@ -52,14 +52,17 @@
                   name = "zsh-vi-mode";
                   src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode";
                 }
-                {
-                  name = "zsh-z";
-                  src = "${pkgs.zsh-z}/share/zsh-z";
-                }
               ];
             };
 
             programs.bat.enable = true;
+
+            programs.zoxide = {
+              enable = true;
+              enableZshIntegration = true;
+            };
+
+            programs.zellij.enable = true;
 
             programs.eza = {
               enable = true;
