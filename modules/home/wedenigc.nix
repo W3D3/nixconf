@@ -32,6 +32,8 @@
               cmake
               patch
               discord
+
+              bambu-studio
             ];
 
             programs.zsh = {

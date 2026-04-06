@@ -22,7 +22,7 @@
         settings = {
           xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
-          input.keyboard.xkb.layout = "eurkey";
+          input.keyboard.xkb.layout = "eu";
 
           layout.gaps = 5;
 
