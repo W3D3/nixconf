@@ -63,8 +63,12 @@
 
       # Configure keymap in X11
       services.xserver.xkb = {
-        layout = "us";
+        layout = "eurkey";
         variant = "";
+      };
+
+      environment.variables = {
+        XKB_DEFAULT_LAYOUT = "eurkey";
       };
 
       # Enable CUPS to print documents.
