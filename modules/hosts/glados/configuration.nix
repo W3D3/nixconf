@@ -7,6 +7,7 @@
       # import any other modules from here
       imports = [
         self.nixosModules.gladosHardware
+        self.nixosModules.gladosFingerprint
         self.nixosModules.niri
         self.nixosModules.homeWedenigc
         self.nixosModules.telegram
@@ -123,22 +124,7 @@
       # Enable Flipper Zero support
       hardware.flipperzero.enable = true;
 
-      # Fingerprint reader (Goodix 27c6:5395) via fprintd-tod
-      # services.fprintd = {
-      #   enable = true;
-      #   tod = {
-      #     enable = true;
-      #     driver = pkgs.libfprint-2-tod1-goodix;
-      #   };
-      # };
-
-      # Enable fingerprint auth for login, sudo, and screen unlock
-      # security.pam.services = {
-      #   login.fprintAuth = true;
-      #   sudo.fprintAuth = true;
-      #   sddm.fprintAuth = true;
-      #   kde-fingerprint.fprintAuth = true;
-      # };
+      # Fingerprint reader — see modules/hosts/glados/fingerprint.nix
 
       # List packages installed in system profile. To search, run:
       # $ nix search wget
