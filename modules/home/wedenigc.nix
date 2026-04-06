@@ -37,7 +37,6 @@
               obsidian
               spotify
               steam
-              visual-studio-code
               jetbrains-toolbox
             ];
 
