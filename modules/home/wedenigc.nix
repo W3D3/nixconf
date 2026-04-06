@@ -34,7 +34,14 @@
               discord
 
               bambu-studio
+              obsidian
+              spotify
+              steam
+              visual-studio-code
+              jetbrains-toolbox
             ];
+
+            programs.git.enable = true;
 
             programs.zsh = {
               enable = true;
@@ -52,6 +59,14 @@
                 {
                   name = "zsh-vi-mode";
                   src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode";
+                }
+                {
+                  name = "fzf-tab";
+                  src = "${pkgs.zsh-fzf-tab}/share/zsh-fzf-tab";
+                }
+                {
+                  name = "zsh-fzf-history-search";
+                  src = "${pkgs.zsh-fzf-history-search}/share/zsh-fzf-history-search";
                 }
               ];
             };
