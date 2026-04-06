@@ -11,6 +11,9 @@
             src = inputs.libfprint-goodix53x5;
             version = "1.94.5-goodix53x5";
 
+            # Drop the 'devdoc' output — we skip gtk-doc generation entirely.
+            outputs = [ "out" ];
+
             # Build only the drivers we need; skip docs and introspection so
             # the build does not require additional dependencies.
             mesonFlags = (builtins.filter (f: !(lib.hasPrefix "-Ddrivers=" f)) (old.mesonFlags or [ ])) ++ [
