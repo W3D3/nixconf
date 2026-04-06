@@ -9,6 +9,7 @@
         self.nixosModules.gladosHardware
         self.nixosModules.niri
         self.nixosModules.homeWedenigc
+        self.nixosModules.telegram
       ];
 
       nix.settings.experimental-features = [

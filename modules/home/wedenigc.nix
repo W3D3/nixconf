@@ -31,7 +31,6 @@
               libtool
               cmake
               patch
-              telegram-desktop
               discord
             ];
 
