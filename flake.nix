@@ -15,7 +15,7 @@
     ayugram-desktop.url = "github:ndfined-crp/ayugram-desktop";
 
     libfprint-goodix53x5 = {
-      url = "github:W3D3/libfprint/64801dd4fbedfb6c107d3c9c9b36f0bafe907658";
+      url = "github:W3D3/libfprint/85a7ba93daa064dfdba47fdedf29bd9c12168aae";
       flake = false;
     };
   };
