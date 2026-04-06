@@ -29,6 +29,23 @@
               prev.pixman
             ];
           });
+
+          # nixpkgs fprintd 1.94.5 requires libfprint >= 1.94.9, but our
+          # libfprint branch is 1.94.5.  Pin fprintd to 1.94.4 which only
+          # needs libfprint >= 1.94.0.
+          fprintd = prev.fprintd.overrideAttrs (old: {
+            version = "1.94.4";
+            outputs = [ "out" ];
+
+            src = builtins.fetchTarball {
+              url = "https://gitlab.freedesktop.org/libfprint/fprintd/-/archive/v1.94.4/fprintd-v1.94.4.tar.gz";
+              sha256 = "sha256:1r8mzivai8lc5aa880y37pjyzqfzci3hlap5s1vl8j33dxvkcs07";
+            };
+
+            # 1.94.4 doesn't need -Dsystemd_system_unit_dir in the same way;
+            # keep the rest of the flags but strip the gtk_doc one that doesn't exist.
+            mesonFlags = builtins.filter (f: !(lib.hasPrefix "-Dgtk_doc=" f)) (old.mesonFlags or [ ]);
+          });
         })
       ];
 
