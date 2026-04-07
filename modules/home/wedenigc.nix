@@ -40,7 +40,17 @@
               jetbrains-toolbox
             ];
 
-            programs.git.enable = true;
+            programs.git = {
+              enable = true;
+              extraConfig.commit.gpgsign = true;
+            };
+
+            programs.gpg.enable = true;
+
+            services.gpg-agent = {
+              enable = true;
+              pinentryPackage = pkgs.pinentry-qt;
+            };
 
             programs.direnv = {
               enable = true;
