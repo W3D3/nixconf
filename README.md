@@ -30,3 +30,43 @@ User configs are exposed as `nixosModules.<name>` and imported by the relevant h
 nix flake update home-manager
 sudo nixos-rebuild switch --flake .#glados
 ```
+
+## GPG Signing
+
+GPG and gpg-agent are configured declaratively, but the key itself must be generated once per machine and is not stored in this repo.
+
+**First-time setup:**
+
+```bash
+# Generate a new key
+gpg --full-generate-key
+# Recommended: Ed25519, no expiry (or set one), fill in your name/email
+
+# Get the key ID (the long hex string after ed25519/)
+gpg --list-secret-keys --keyid-format=long
+```
+
+Then add the key ID to your nix config in `modules/home/wedenigc.nix`:
+
+```nix
+programs.git.extraConfig = {
+  commit.gpgsign = true;
+  user.signingKey = "<your-key-id>";
+};
+```
+
+Run `sudo nixos-rebuild switch --flake .#glados` to apply.
+
+**Backup your key** (store somewhere safe, outside this repo):
+
+```bash
+gpg --export-secret-keys --armor <your-key-id> > gpg-private-key.asc
+```
+
+**Restore on a new machine:**
+
+```bash
+gpg --import gpg-private-key.asc
+gpg --edit-key <your-key-id>
+# type: trust → 5 (ultimate) → quit
+```

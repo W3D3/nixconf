@@ -44,6 +44,7 @@
             programs.git = {
               enable = true;
               extraConfig.commit.gpgsign = true;
+              extraConfig.user.signingKey = "8D89757F3C8227BE";
             };
 
             programs.gpg.enable = true;
