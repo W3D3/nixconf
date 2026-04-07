@@ -8,8 +8,9 @@
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
+        sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
         users.wedenigc =
-          { pkgs, ... }:
+          { pkgs, lib, ... }:
           {
             home.username = "wedenigc";
             home.homeDirectory = "/home/wedenigc";
@@ -112,6 +113,12 @@
             programs.ghostty = {
               enable = true;
               settings.font-family = "JetBrainsMono Nerd Font Mono";
+            };
+
+            programs.plasma.hotkeys.commands."launch-ghostty" = {
+              name = "Launch Ghostty";
+              key = "Alt+Return";
+              command = "${lib.getExe pkgs.ghostty}";
             };
 
             programs.starship = {
