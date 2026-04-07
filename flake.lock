@@ -152,6 +152,23 @@
         "type": "github"
       }
     },
+    "libfprint-goodix53x5": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1775511859,
+        "narHash": "sha256-jRsRJ4kH+zsK4s1yRDMrk8Zp+FGMSutj6F6zmjmtdCE=",
+        "owner": "W3D3",
+        "repo": "libfprint",
+        "rev": "85a7ba93daa064dfdba47fdedf29bd9c12168aae",
+        "type": "github"
+      },
+      "original": {
+        "owner": "W3D3",
+        "repo": "libfprint",
+        "rev": "85a7ba93daa064dfdba47fdedf29bd9c12168aae",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1774386573,
@@ -236,6 +253,7 @@
         "flake-parts": "flake-parts_2",
         "home-manager": "home-manager",
         "import-tree": "import-tree",
+        "libfprint-goodix53x5": "libfprint-goodix53x5",
         "nixpkgs": "nixpkgs_2",
         "wrapper-modules": "wrapper-modules"
       }
