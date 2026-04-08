@@ -19,6 +19,7 @@
     {
       packages.myNiri = inputs.wrapper-modules.wrappers.niri.wrap {
         inherit pkgs;
+        v2-settings = true;
         settings = {
           xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
@@ -28,7 +29,7 @@
 
           binds = {
             "Mod+Return".spawn-sh = lib.getExe pkgs.ghostty;
-            "Mod+Q".close-window = null;
+            "Mod+Q".close-window = { };
           };
         };
       };

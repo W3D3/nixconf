@@ -8,7 +8,7 @@
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
-        sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
+        sharedModules = [ inputs.plasma-manager.homeModules.plasma-manager ];
         users.wedenigc =
           { pkgs, lib, ... }:
           {
@@ -43,15 +43,15 @@
 
             programs.git = {
               enable = true;
-              extraConfig.commit.gpgsign = true;
-              extraConfig.user.signingKey = "8D89757F3C8227BE";
+              settings.commit.gpgsign = true;
+              settings.user.signingKey = "8D89757F3C8227BE";
             };
 
             programs.gpg.enable = true;
 
             services.gpg-agent = {
               enable = true;
-              pinentryPackage = pkgs.pinentry-qt;
+              pinentry.package = pkgs.pinentry-qt;
             };
 
             programs.direnv = {
@@ -73,10 +73,6 @@
                   src = "${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use";
                 }
                 {
-                  name = "zsh-vi-mode";
-                  src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode";
-                }
-                {
                   name = "fzf-tab";
                   src = "${pkgs.zsh-fzf-tab}/share/zsh-fzf-tab";
                 }
@@ -85,9 +81,6 @@
                   src = "${pkgs.zsh-fzf-history-search}/share/zsh-fzf-history-search";
                 }
               ];
-              initContent = ''
-                zvm_after_init_commands+=('source ${pkgs.zsh-fzf-history-search}/share/zsh-fzf-history-search/zsh-fzf-history-search.zsh')
-              '';
             };
 
             programs.bat.enable = true;
