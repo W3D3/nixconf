@@ -85,6 +85,9 @@
                   src = "${pkgs.zsh-fzf-history-search}/share/zsh-fzf-history-search";
                 }
               ];
+              initContent = ''
+                zvm_after_init_commands+=('source ${pkgs.zsh-fzf-history-search}/share/zsh-fzf-history-search/zsh-fzf-history-search.zsh')
+              '';
             };
 
             programs.bat.enable = true;
