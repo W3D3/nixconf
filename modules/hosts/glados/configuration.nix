@@ -124,6 +124,13 @@
       # Enable Flipper Zero support
       hardware.flipperzero.enable = true;
 
+      # 1Password
+      programs._1password.enable = true;
+      programs._1password-gui = {
+        enable = true;
+        polkitPolicyOwners = [ "wedenigc" ];
+      };
+
       # Fingerprint reader — see modules/hosts/glados/fingerprint.nix
 
       # List packages installed in system profile. To search, run:
