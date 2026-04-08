@@ -52,6 +52,8 @@
             services.gpg-agent = {
               enable = true;
               pinentry.package = pkgs.pinentry-qt;
+              defaultCacheTtl = 86400; # 24 hours
+              maxCacheTtl = 86400; # 24 hours
             };
 
             programs.direnv = {

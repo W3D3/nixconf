@@ -68,6 +68,7 @@
       # SDDM / KDE lock-screen unlock prompts.
       security.pam.services = {
         login.fprintAuth = true;
+        login.gnupg.enable = true;
         sudo.fprintAuth = true;
         sddm.fprintAuth = true;
         kde-fingerprint.fprintAuth = true;
