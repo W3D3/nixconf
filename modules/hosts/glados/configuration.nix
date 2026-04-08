@@ -172,6 +172,15 @@
       # Before changing this value read the documentation for this option
       # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
       system.stateVersion = "25.11"; # Did you read the comment?
+
+      system.activationScripts.setAvatar = ''
+        install -Dm644 ${self}/assets/avatar.jpeg /var/lib/AccountsService/icons/wedenigc
+        if [ -f /var/lib/AccountsService/users/wedenigc ]; then
+          sed -i '/^Icon=/d' /var/lib/AccountsService/users/wedenigc
+        fi
+        mkdir -p /var/lib/AccountsService/users
+        echo -e "[User]\nIcon=/var/lib/AccountsService/icons/wedenigc" > /var/lib/AccountsService/users/wedenigc
+      '';
     };
 
 }
