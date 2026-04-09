@@ -33,6 +33,7 @@
               cmake
               patch
               discord
+              signal-desktop
 
               bambu-studio
               obsidian
