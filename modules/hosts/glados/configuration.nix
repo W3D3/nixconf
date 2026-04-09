@@ -158,6 +158,14 @@
         qFlipper
         opencode
         google-chrome
+
+        # network tools
+        bind # nslookup, dig
+        inetutils # ping, traceroute, whois
+        nmap
+        iproute2 # ip, ss
+        ethtool
+        tcpdump
       ];
 
       # Some programs need SUID wrappers, can be configured further or are
