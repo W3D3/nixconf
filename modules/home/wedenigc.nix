@@ -40,6 +40,9 @@
               spotify
               steam
               jetbrains-toolbox
+
+              httpie
+              httpie-desktop
             ];
 
             programs.git = {
