@@ -13,6 +13,8 @@
         self.nixosModules.telegram
       ];
 
+      nixpkgs.overlays = [ inputs.claude-desktop.overlays.default ];
+
       nix.settings.experimental-features = [
         "nix-command"
         "flakes"
@@ -157,6 +159,7 @@
         usbutils
         qFlipper
         opencode
+        claude-desktop
         google-chrome
 
         # network tools
@@ -168,7 +171,11 @@
         tcpdump
 
         # R markdown
-        R
+        (pkgs.rWrapper.override {
+          packages = with pkgs.rPackages; [
+            languageserver
+          ];
+        })
         pandoc
       ];
 

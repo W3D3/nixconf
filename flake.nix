@@ -20,6 +20,8 @@
 
     ayugram-desktop.url = "github:ndfined-crp/ayugram-desktop";
 
+    claude-desktop.url = "github:aaddrick/claude-desktop-debian";
+
     libfprint-goodix53x5 = {
       url = "github:W3D3/libfprint/85a7ba93daa064dfdba47fdedf29bd9c12168aae";
       flake = false;
