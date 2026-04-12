@@ -166,6 +166,10 @@
         iproute2 # ip, ss
         ethtool
         tcpdump
+
+        # R markdown
+        R
+        pandoc
       ];
 
       # Some programs need SUID wrappers, can be configured further or are

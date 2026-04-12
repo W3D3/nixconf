@@ -126,6 +126,25 @@
               enableZshIntegration = true;
             };
 
+            programs.vscode = {
+              enable = true;
+              package = pkgs.vscode;
+              profiles.default.extensions =
+                with pkgs.vscode-extensions;
+                [
+                  reditorsupport.r # R language support + R Markdown
+                  reditorsupport.r-syntax # R syntax highlighting
+                ]
+                ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+                  {
+                    name = "quarto";
+                    publisher = "quarto";
+                    version = "1.116.0";
+                    sha256 = "1v0b2442zpmpnfd2dmmzw4d0svq47p1hvs4ckv14gs7fhqvl2303";
+                  }
+                ];
+            };
+
             programs.home-manager.enable = true;
           };
       };
