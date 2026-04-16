@@ -138,6 +138,9 @@
       services.gnome.gnome-keyring.enable = true;
       security.pam.services.login.enableGnomeKeyring = true;
 
+      # Tailscale
+      services.tailscale.enable = true;
+
       # Fingerprint reader — see modules/hosts/glados/fingerprint.nix
 
       # List packages installed in system profile. To search, run:
