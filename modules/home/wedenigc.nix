@@ -43,6 +43,7 @@
 
               httpie
               httpie-desktop
+              handbrake
             ];
 
             programs.git = {
