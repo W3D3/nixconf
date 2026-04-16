@@ -128,6 +128,10 @@
               command = "${lib.getExe pkgs.ghostty}";
             };
 
+            programs.plasma.shortcuts = {
+              kwin."MaximizeActiveWindow" = "Meta+Shift+Up";
+            };
+
             programs.starship = {
               enable = true;
               enableZshIntegration = true;
