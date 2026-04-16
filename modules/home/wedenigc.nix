@@ -98,6 +98,7 @@
               enable = true;
               settings = {
                 theme = "catppuccin-mocha";
+                default_mode = "locked";
               };
             };
 
