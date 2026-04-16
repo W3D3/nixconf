@@ -70,6 +70,7 @@
               enable = true;
               autosuggestion.enable = true;
               syntaxHighlighting.enable = true;
+              completionInit = "autoload -U compinit && compinit -u";
               plugins = [
                 {
                   name = "nix-shell";
@@ -83,10 +84,6 @@
                   name = "fzf-tab";
                   src = "${pkgs.zsh-fzf-tab}/share/zsh-fzf-tab";
                 }
-                {
-                  name = "zsh-fzf-history-search";
-                  src = "${pkgs.zsh-fzf-history-search}/share/zsh-fzf-history-search";
-                }
               ];
             };
 
@@ -97,7 +94,12 @@
               enableZshIntegration = true;
             };
 
-            programs.zellij.enable = true;
+            programs.zellij = {
+              enable = true;
+              settings = {
+                theme = "catppuccin-mocha";
+              };
+            };
 
             programs.eza = {
               enable = true;
