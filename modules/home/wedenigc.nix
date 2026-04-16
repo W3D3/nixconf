@@ -18,7 +18,6 @@
 
             home.packages = with pkgs; [
               kdePackages.kate
-              thunderbird
               zed-editor
               gh
               claude-code
@@ -139,6 +138,55 @@
             programs.starship = {
               enable = true;
               enableZshIntegration = true;
+            };
+
+            programs.thunderbird = {
+              enable = true;
+              profiles.default.isDefault = true;
+            };
+
+            accounts.email.accounts.gmail = {
+              name = "Gmail";
+              address = "wedenigc@gmail.com";
+              realName = "Christoph Wedenig";
+              thunderbird = {
+                enable = true;
+                profiles = [ "default" ];
+              };
+              imap = {
+                host = "imap.gmail.com";
+                port = 993;
+                tls.enable = true;
+              };
+              smtp = {
+                host = "smtp.gmail.com";
+                port = 465;
+                tls.enable = true;
+              };
+            };
+
+            accounts.email.accounts.aau = {
+              name = "AAU Mail";
+              address = "christoph.wedenig@aau.at";
+              realName = "Christoph Wedenig";
+              userName = "christoph.wedenig@aau.at";
+              thunderbird = {
+                enable = true;
+                profiles = [ "default" ];
+              };
+              imap = {
+                host = "mail.aau.at";
+                port = 993;
+                tls.enable = true;
+              };
+              smtp = {
+                host = "mail.aau.at";
+                port = 587;
+                tls = {
+                  enable = true;
+                  useStartTls = true;
+                };
+              };
             };
 
             programs.vscode = {
