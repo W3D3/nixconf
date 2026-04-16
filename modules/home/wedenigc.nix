@@ -44,6 +44,7 @@
               httpie
               httpie-desktop
               handbrake
+              wl-clipboard
             ];
 
             programs.git = {
@@ -71,6 +72,9 @@
               autosuggestion.enable = true;
               syntaxHighlighting.enable = true;
               completionInit = "autoload -U compinit && compinit -u";
+              shellAliases = {
+                clip = "wl-copy";
+              };
               plugins = [
                 {
                   name = "nix-shell";
