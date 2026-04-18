@@ -152,6 +152,12 @@
                     sha256 = "sha256-86wuKdsFUTcIpg7k6XAbwKbZnopjT24pmrlCV46OOok=";
                     fixedExtid = "thunderai@micz.it";
                   })
+                  (pkgs.fetchFirefoxAddon {
+                    name = "thunderbird-mcp";
+                    url = "https://github.com/TKasperczyk/thunderbird-mcp/releases/download/v0.4.0/thunderbird-mcp.xpi";
+                    sha256 = "sha256-diry9nLRir6o8X99E3nRgorZufeGsSGKqE77UGy4lbw=";
+                    fixedExtid = "thunderbird-mcp@tkasperczyk.dev";
+                  })
                 ];
               };
             };
@@ -217,6 +223,24 @@
                     sha256 = "1v0b2442zpmpnfd2dmmzw4d0svq47p1hvs4ckv14gs7fhqvl2303";
                   }
                 ];
+            };
+
+            # thunderbird-mcp bridge script
+            home.file.".local/share/thunderbird-mcp/mcp-bridge.cjs" = {
+              source = pkgs.fetchurl {
+                url = "https://raw.githubusercontent.com/TKasperczyk/thunderbird-mcp/v0.4.0/mcp-bridge.cjs";
+                sha256 = "1bn35gsi67g9scsiklqkdqzh1cnjfgx8fnrpa1v86fkn3f37i54z";
+              };
+            };
+
+            # Claude Code MCP config
+            home.file.".claude.json".text = builtins.toJSON {
+              mcpServers = {
+                thunderbird-mail = {
+                  command = "${pkgs.nodejs}/bin/node";
+                  args = [ "/home/wedenigc/.local/share/thunderbird-mcp/mcp-bridge.cjs" ];
+                };
+              };
             };
 
             programs.home-manager.enable = true;
