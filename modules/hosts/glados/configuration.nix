@@ -159,6 +159,8 @@
         nixfmt
         package-version-server
 
+        nodejs_24
+
         usbutils
         qFlipper
         opencode
