@@ -44,6 +44,7 @@
               httpie-desktop
               handbrake
               wl-clipboard
+              mailspring
             ];
 
             programs.git = {
