@@ -13,6 +13,7 @@
         self.nixosModules.telegram
         self.nixosModules.mail
         self.nixosModules.shell
+        self.nixosModules.git
       ];
 
       nixpkgs.overlays = [ inputs.claude-desktop.overlays.default ];
