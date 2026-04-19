@@ -70,3 +70,31 @@ gpg --import gpg-private-key.asc
 gpg --edit-key <your-key-id>
 # type: trust → 5 (ultimate) → quit
 ```
+
+## Thunderbird Extensions
+
+Thunderbird extensions cannot be managed declaratively (Thunderbird overwrites the extensions database on startup). They are made available as XPI files by the nix config and must be installed once manually.
+
+**Install extensions:**
+
+1. Open Thunderbird → Tools → Add-ons and Themes
+2. Click the gear icon → Install Add-on From File
+3. Install `~/.local/share/thunderbird-extensions/thunderai.xpi`
+4. Install `~/.local/share/thunderbird-mcp/thunderbird-mcp.xpi`
+
+Extensions persist in the Thunderbird profile across rebuilds.
+
+## Gmail (App Password)
+
+Google has disabled plain password auth. Use an app-specific password instead:
+
+1. Go to [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)
+2. Create an app password named "Thunderbird"
+3. Use the 16-character password when Thunderbird prompts for Gmail credentials
+
+## Thunderbird MCP (Claude Code)
+
+The `thunderbird-mcp` extension exposes Thunderbird to Claude Code via MCP. The bridge and MCP config are managed by nix — no manual config needed beyond installing the extension (see above).
+
+After installing the extension, Claude Code will automatically connect to Thunderbird when it starts. Verify with `/mcp` in Claude Code.
+

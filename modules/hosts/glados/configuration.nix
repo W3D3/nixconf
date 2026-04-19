@@ -11,6 +11,7 @@
         self.nixosModules.niri
         self.nixosModules.homeWedenigc
         self.nixosModules.telegram
+        self.nixosModules.mail
       ];
 
       nixpkgs.overlays = [ inputs.claude-desktop.overlays.default ];
