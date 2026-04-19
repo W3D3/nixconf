@@ -91,14 +91,14 @@
           };
 
           # Claude Code MCP config
-          home.file.".claude.json".text = builtins.toJSON {
-            mcpServers = {
-              thunderbird-mail = {
-                command = "${pkgs.nodejs_24}/bin/node";
-                args = [ "/home/wedenigc/.local/share/thunderbird-mcp/mcp-bridge.cjs" ];
-              };
-            };
-          };
+          # home.file.".claude.json".text = builtins.toJSON {
+          #   mcpServers = {
+          #     thunderbird-mail = {
+          #       command = "${pkgs.nodejs_24}/bin/node";
+          #       args = [ "/home/wedenigc/.local/share/thunderbird-mcp/mcp-bridge.cjs" ];
+          #     };
+          #   };
+          # };
         };
     };
 }
