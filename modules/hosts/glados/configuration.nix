@@ -111,6 +111,7 @@
           "networkmanager"
           "wheel"
           "dialout"
+          "docker"
         ];
       };
 
@@ -143,6 +144,9 @@
 
       # Tailscale
       services.tailscale.enable = true;
+
+      # Docker
+      virtualisation.docker.enable = true;
 
       # Fingerprint reader — see modules/hosts/glados/fingerprint.nix
 

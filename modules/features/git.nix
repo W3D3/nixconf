@@ -8,6 +8,8 @@
       home-manager.users.wedenigc =
         { pkgs, ... }:
         {
+          home.packages = [ pkgs.lazygit ];
+
           programs.git = {
             enable = true;
             settings.commit.gpgsign = true;
