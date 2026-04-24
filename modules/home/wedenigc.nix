@@ -8,9 +8,12 @@
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
-        sharedModules = [ inputs.plasma-manager.homeModules.plasma-manager ];
+        sharedModules = [
+          inputs.plasma-manager.homeModules.plasma-manager
+          inputs.meridian.homeManagerModules.default
+        ];
         users.wedenigc =
-          { pkgs, lib, ... }:
+          { pkgs, lib, config, ... }:
           {
             home.username = "wedenigc";
             home.homeDirectory = "/home/wedenigc";
@@ -82,6 +85,12 @@
             };
 
             programs.home-manager.enable = true;
+
+            services.meridian.enable = true;
+
+            xdg.configFile."opencode/opencode.json".text = builtins.toJSON {
+              plugin = [ config.services.meridian.opencode.pluginPath ];
+            };
           };
       };
     };
