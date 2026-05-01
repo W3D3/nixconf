@@ -49,6 +49,10 @@
               wl-clipboard
               mailspring
               sshfs
+              lazysql
+              lazydocker
+              postgresql
+              pgadmin4-desktopmode
             ];
 
             programs.direnv = {
