@@ -48,6 +48,7 @@
               handbrake
               wl-clipboard
               mailspring
+              sshfs
             ];
 
             programs.direnv = {
@@ -87,6 +88,30 @@
             programs.home-manager.enable = true;
 
             services.meridian.enable = true;
+
+            home.activation.createHadesMountPoint = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+              mkdir -p $HOME/mnt/hades
+            '';
+
+            systemd.user.mounts."home-wedenigc-mnt-hades" = {
+              Unit.Description = "SSHFS mount for hades.local";
+              Mount = {
+                What = "wedenigc@hades.local:/";
+                Where = "/home/wedenigc/mnt/hades";
+                Type = "fuse.sshfs";
+                Options = "reconnect,ServerAliveInterval=15,ServerAliveCountMax=3,idmap=user,follow_symlinks";
+                TimeoutSec = "30";
+              };
+            };
+
+            systemd.user.automounts."home-wedenigc-mnt-hades" = {
+              Unit.Description = "Automount SSHFS hades.local";
+              Automount = {
+                Where = "/home/wedenigc/mnt/hades";
+                TimeoutIdleSec = "600";
+              };
+              Install.WantedBy = [ "default.target" ];
+            };
 
             xdg.configFile."opencode/opencode.json".text = builtins.toJSON {
               plugin = [ config.services.meridian.opencode.pluginPath ];
