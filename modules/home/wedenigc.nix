@@ -54,6 +54,7 @@
               postgresql
               pgadmin4-desktopmode
               typst
+              go
             ];
 
             programs.direnv = {
