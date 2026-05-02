@@ -53,6 +53,7 @@
               lazydocker
               postgresql
               pgadmin4-desktopmode
+              typst
             ];
 
             programs.direnv = {
