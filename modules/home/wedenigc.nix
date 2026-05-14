@@ -54,8 +54,15 @@
               postgresql
               pgadmin4-desktopmode
               typst
-              go
+              htop
             ];
+
+            programs.go = {
+              enable = true;
+              env.GOPATH = "${config.home.homeDirectory}/go";
+            };
+
+            home.sessionPath = [ "${config.home.homeDirectory}/go/bin" ];
 
             programs.direnv = {
               enable = true;
@@ -120,7 +127,10 @@
             };
 
             xdg.configFile."opencode/opencode.json".text = builtins.toJSON {
-              plugin = [ config.services.meridian.opencode.pluginPath ];
+              plugin = [
+                config.services.meridian.opencode.pluginPath
+                "@rynfar/meridian-plugin-opencode-scrub"
+              ];
             };
           };
       };
