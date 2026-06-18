@@ -112,6 +112,7 @@
           "wheel"
           "dialout"
           "docker"
+          "usbmux"
         ];
       };
 
@@ -147,6 +148,9 @@
 
       # Docker
       virtualisation.docker.enable = true;
+
+      # iOS device support
+      services.usbmuxd.enable = true;
 
       # Fingerprint reader — see modules/hosts/glados/fingerprint.nix
 

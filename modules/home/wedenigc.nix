@@ -55,6 +55,7 @@
               pgadmin4-desktopmode
               typst
               htop
+              inputs.iloader.packages.${pkgs.stdenv.hostPlatform.system}.default
             ];
 
             programs.go = {
