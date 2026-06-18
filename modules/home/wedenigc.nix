@@ -37,8 +37,7 @@
               discord
               signal-desktop
 
-              bambu-studio
-              obsidian
+obsidian
               spotify
               steam
               jetbrains-toolbox

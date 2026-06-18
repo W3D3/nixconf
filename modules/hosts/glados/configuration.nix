@@ -171,6 +171,7 @@
         package-version-server
 
         nodejs_24
+        python3
 
         usbutils
         qFlipper
