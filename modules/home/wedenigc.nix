@@ -53,7 +53,9 @@ obsidian
               postgresql
               pgadmin4-desktopmode
               typst
+              tigervnc
               htop
+              python3Packages.shodan
               inputs.iloader.packages.${pkgs.stdenv.hostPlatform.system}.default
             ];
 
