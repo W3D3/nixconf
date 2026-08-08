@@ -13,7 +13,12 @@
           inputs.meridian.homeManagerModules.default
         ];
         users.wedenigc =
-          { pkgs, lib, config, ... }:
+          {
+            pkgs,
+            lib,
+            config,
+            ...
+          }:
           {
             home.username = "wedenigc";
             home.homeDirectory = "/home/wedenigc";
@@ -37,7 +42,7 @@
               discord
               signal-desktop
 
-obsidian
+              obsidian
               spotify
               steam
               jetbrains-toolbox
@@ -56,6 +61,7 @@ obsidian
               tigervnc
               htop
               python3Packages.shodan
+              uncover
               inputs.iloader.packages.${pkgs.stdenv.hostPlatform.system}.default
             ];
 
