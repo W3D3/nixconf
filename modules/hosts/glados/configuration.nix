@@ -122,7 +122,7 @@
       # Install firefox.
       programs.firefox.enable = true;
 
-      fonts.packages = [ pkgs.nerd-fonts.jetbrains-mono pkgs.corefonts ];
+      fonts.packages = [ pkgs.nerd-fonts.jetbrains-mono ];
       fonts.fontconfig.defaultFonts.monospace = [ "JetBrainsMono Nerd Font Mono" ];
 
       # Allow unfree packages
