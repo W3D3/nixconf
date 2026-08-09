@@ -62,6 +62,7 @@
               htop
               python3Packages.shodan
               uncover
+              libreoffice
               inputs.iloader.packages.${pkgs.stdenv.hostPlatform.system}.default
             ];
 
