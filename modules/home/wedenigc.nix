@@ -8,6 +8,7 @@
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
+        backupFileExtension = "bkp";
         sharedModules = [
           inputs.plasma-manager.homeModules.plasma-manager
           inputs.meridian.homeManagerModules.default

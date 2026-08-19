@@ -20,8 +20,6 @@
 
     ayugram-desktop.url = "github:ndfined-crp/ayugram-desktop";
 
-    claude-desktop.url = "github:aaddrick/claude-desktop-debian";
-
     meridian.url = "github:rynfar/meridian";
 
     iloader.url = "github:nab138/iloader";

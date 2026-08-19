@@ -16,8 +16,6 @@
         self.nixosModules.git
       ];
 
-      nixpkgs.overlays = [ inputs.claude-desktop.overlays.default ];
-
       nix.settings.experimental-features = [
         "nix-command"
         "flakes"
@@ -176,7 +174,6 @@
         usbutils
         qFlipper
         opencode
-        claude-desktop
         google-chrome
 
         # network tools
