@@ -14,6 +14,7 @@
         self.nixosModules.mail
         self.nixosModules.shell
         self.nixosModules.git
+        self.nixosModules.nextcloudNative
       ];
 
       nix.settings.experimental-features = [
@@ -172,6 +173,10 @@
         python3
 
         usbutils
+        unzip
+        vlc
+        openssl
+        android-tools # adb, fastboot
         qFlipper
         opencode
         google-chrome
