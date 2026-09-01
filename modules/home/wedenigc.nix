@@ -20,6 +20,32 @@
             config,
             ...
           }:
+          let
+            pico8 = pkgs.stdenv.mkDerivation {
+              pname = "pico-8";
+              version = "0.2.7";
+              src = "${self}/assets/pico-8_0.2.7_amd64.zip";
+              nativeBuildInputs = with pkgs; [ unzip makeWrapper ];
+              unpackPhase = "unzip $src";
+              installPhase = ''
+                mkdir -p $out/bin $out/share/pico-8
+                cp -r pico-8/. $out/share/pico-8/
+                chmod +x $out/share/pico-8/pico8
+                makeWrapper $out/share/pico-8/pico8 $out/bin/pico8 \
+                  --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath (with pkgs; [
+                    SDL2
+                    alsa-lib
+                    libGL
+                    libX11
+                    libXcursor
+                    libXrandr
+                    libXinerama
+                    libXi
+                  ])}
+              '';
+              meta.mainProgram = "pico8";
+            };
+          in
           {
             home.username = "wedenigc";
             home.homeDirectory = "/home/wedenigc";
@@ -46,8 +72,10 @@
               obsidian
               spotify
               steam
+              pico8
               jetbrains-toolbox
 
+              home-assistant-cli
               httpie
               httpie-desktop
               handbrake
@@ -65,7 +93,16 @@
               uncover
               libreoffice
               inputs.iloader.packages.${pkgs.stdenv.hostPlatform.system}.default
+              inputs.hunk.packages.${pkgs.stdenv.hostPlatform.system}.default
             ];
+
+            home.sessionVariables = {
+              HASS_SERVER = "https://homeassistant.wedenig.xyz";
+            };
+
+            programs.zsh.initExtra = ''
+              export HASS_TOKEN=$(op read "op://Personal/gdtwwssmzb7z6eswd5rf7ufhde/apitoken" 2>/dev/null)
+            '';
 
             programs.go = {
               enable = true;

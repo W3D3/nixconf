@@ -117,6 +117,11 @@
       programs.zsh.enable = true;
       programs.nix-ld.enable = true;
 
+      programs.appimage = {
+        enable = true;
+        binfmt = true;
+      };
+
       # Install firefox.
       programs.firefox.enable = true;
 
@@ -172,6 +177,10 @@
         python3
 
         usbutils
+        unzip
+        vlc
+        openssl
+        android-tools # adb, fastboot
         qFlipper
         opencode
         google-chrome

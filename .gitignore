@@ -13,6 +13,9 @@ result-*
 *.swo
 *~
 
+# Proprietary binaries (staged for Nix flake but never committed)
+assets/*.zip
+
 # Secrets / sensitive files
 secrets.nix
 secrets/
