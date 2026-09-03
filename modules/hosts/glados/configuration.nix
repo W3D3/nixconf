@@ -111,6 +111,7 @@
           "dialout"
           "docker"
           "usbmux"
+          "libvirtd"
         ];
       };
 
@@ -124,6 +125,10 @@
 
       # Install firefox.
       programs.firefox.enable = true;
+
+      # Steam
+      programs.steam.enable = true;
+      hardware.graphics.enable32Bit = true;
 
       fonts.packages = [ pkgs.nerd-fonts.jetbrains-mono ];
       fonts.fontconfig.defaultFonts.monospace = [ "JetBrainsMono Nerd Font Mono" ];
@@ -151,6 +156,10 @@
 
       # Docker
       virtualisation.docker.enable = true;
+
+      # KVM / Virt-Manager
+      virtualisation.libvirtd.enable = true;
+      programs.virt-manager.enable = true;
 
       # iOS device support
       services.usbmuxd.enable = true;

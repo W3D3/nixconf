@@ -15,6 +15,7 @@
             completionInit = "autoload -U compinit && compinit -u";
             shellAliases = {
               clip = "wl-copy";
+              rebuild = "sudo nixos-rebuild switch --flake ~/nixconf#glados --impure";
             };
             plugins = [
               {

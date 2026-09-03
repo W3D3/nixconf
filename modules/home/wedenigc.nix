@@ -24,7 +24,7 @@
             pico8 = pkgs.stdenv.mkDerivation {
               pname = "pico-8";
               version = "0.2.7";
-              src = "${self}/assets/pico-8_0.2.7_amd64.zip";
+              src = /home/wedenigc/Documents/pico-8_0.2.7_amd64.zip;
               nativeBuildInputs = with pkgs; [ unzip makeWrapper ];
               unpackPhase = "unzip $src";
               installPhase = ''
@@ -71,7 +71,7 @@
 
               obsidian
               spotify
-              steam
+              qbittorrent
               pico8
               jetbrains-toolbox
 
@@ -100,7 +100,7 @@
               HASS_SERVER = "https://homeassistant.wedenig.xyz";
             };
 
-            programs.zsh.initExtra = ''
+            programs.zsh.initContent = ''
               export HASS_TOKEN=$(op read "op://Personal/gdtwwssmzb7z6eswd5rf7ufhde/apitoken" 2>/dev/null)
             '';
 
@@ -125,6 +125,10 @@
             programs.plasma.shortcuts = {
               kwin."MaximizeActiveWindow" = "Meta+Shift+Up";
             };
+
+            programs.plasma.configFile."kcminputrc"."Mouse"."XLbInptMiddleButtonPaste" = false;
+
+            programs.plasma.configFile."touchpadxlibinputrc"."SYNA2393:00 06CB:7A13 Touchpad"."TapButton3" = 0;
 
             programs.vscode = {
               enable = true;
