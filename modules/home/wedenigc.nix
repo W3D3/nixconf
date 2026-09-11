@@ -56,6 +56,7 @@
               zed-editor
               gh
               claude-code
+              claude-monitor
               fastfetch
               gcc
               gnumake

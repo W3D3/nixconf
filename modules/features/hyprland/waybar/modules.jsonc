@@ -56,6 +56,13 @@
     "cpu": {
         "format": " {usage}%"
     },
+    "custom/claude": {
+        "exec": "waybar-claude",
+        "return-type": "json",
+        "interval": 60,
+        "tooltip": true,
+        "on-click": "kitty -e claude-monitor"
+    },
     "clock": {
         "interval": 1,
         "format": "{:%T}",

@@ -95,6 +95,7 @@
           hyprland
           kitty
           waybar
+          waybar-claude
           otter-launcher
           wpaperd
           hyprlock
@@ -243,6 +244,7 @@
                 "mpris"
               ],
               "modules-right": [
+                "custom/claude",
                 "network",
                 "bluetooth",
                 "custom/notifs",
@@ -410,6 +412,14 @@
             };
           }
         );
+
+        waybar-claude = pkgs.writeShellApplication {
+          name = "waybar-claude";
+          runtimeInputs = [ pkgs.python3 ];
+          text = ''
+            exec python3 ${./waybar/claude-usage.py} "$@"
+          '';
+        };
 
         wshowkeys = inputs'.wshowkeys.packages.default;
         gotify-desktop = inputs'.gotify-desktop.packages.default;
