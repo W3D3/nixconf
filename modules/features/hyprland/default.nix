@@ -56,6 +56,7 @@
           fsel
           bluetui
           networkmanagerapplet
+          jellyfin-tui
         ]
         ++ (with self'.packages; [
           hyprland

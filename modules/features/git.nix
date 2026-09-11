@@ -20,7 +20,7 @@
 
           services.gpg-agent = {
             enable = true;
-            pinentry.package = pkgs.pinentry-qt;
+            pinentry.package = pkgs.pinentry-gnome3;
             defaultCacheTtl = 86400; # 24 hours
             maxCacheTtl = 86400; # 24 hours
           };
