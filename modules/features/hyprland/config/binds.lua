@@ -99,6 +99,10 @@ local globalAppBinds = {
 		end,
 	},
 
+	-- Stack windows vertically: consume pulls next column into current; expel pops back out
+	{ key = { "SHIFT + j" }, dispatch = hl.dsp.layout("consume") },
+	{ key = { "SHIFT + k" }, dispatch = hl.dsp.layout("expel") },
+
 	---- Special Workspaces
 	{ key = { "m" }, dispatch = hl.dsp.workspace.toggle_special("music") },
 	{ key = { "minus" }, dispatch = hl.dsp.workspace.toggle_special("scratch") },

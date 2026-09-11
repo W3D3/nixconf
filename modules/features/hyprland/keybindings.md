@@ -9,6 +9,8 @@ Modifier key: `Super` (Windows key)
 | `Super + h/l` | Focus window left/right (crosses monitors) |
 | `Super + j/k` | Focus window down/up |
 | `Super + Shift + h/l` | Swap columns left/right |
+| `Super + Shift + j` | Stack next window into current column (vertical) |
+| `Super + Shift + k` | Pop window back out of column to its own column |
 
 ## Windows
 
