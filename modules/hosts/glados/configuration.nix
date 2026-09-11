@@ -17,6 +17,7 @@
         self.nixosModules.mimeapps
         self.nixosModules.devenv
         self.nixosModules.hyprland
+        self.nixosModules.telegramtui
       ];
 
       nix.settings.experimental-features = [

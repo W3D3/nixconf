@@ -3,6 +3,7 @@ local appList = {
 	"gotify-desktop",
 	"quickshell",
 	"nm-applet --indicator",
+	"wl-paste --watch cliphist store",
 }
 
 hl.on("hyprland.start", function()

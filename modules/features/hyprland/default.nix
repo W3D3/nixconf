@@ -23,6 +23,37 @@
           lib.getExe pkg;
     in
     {
+      imports = [ inputs.home-manager.nixosModules.home-manager ];
+
+      home-manager.users.wedenigc =
+        { ... }:
+        {
+          programs.fuzzel = {
+            enable = true;
+            settings = {
+              main = {
+                font = "FiraMono Nerd Font:size=12";
+                width = 40;
+                lines = 8;
+                dpi-aware = "no";
+              };
+              colors = {
+                background = "1e1e2eff";
+                text = "cdd6f4ff";
+                match = "cba6f7ff";
+                selection = "cba6f7ff";
+                selection-text = "1e1e2eff";
+                selection-match = "1e1e2eff";
+                border = "cba6f7ff";
+              };
+              border = {
+                width = 2;
+                radius = 8;
+              };
+            };
+          };
+        };
+
       programs.hyprland = {
         enable = true;
         package = self'.packages.hyprland;
@@ -57,6 +88,8 @@
           bluetui
           networkmanagerapplet
           jellyfin-tui
+          cliphist
+          fuzzel
         ]
         ++ (with self'.packages; [
           hyprland

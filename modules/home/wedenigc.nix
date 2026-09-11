@@ -76,6 +76,7 @@
               pico8
               jetbrains-toolbox
 
+              nchat
               home-assistant-cli
               httpie
               httpie-desktop

@@ -58,12 +58,19 @@ local globalAppBinds = {
 		end,
 	},
 
-	-- Browsers
-	{ key = { "f" }, dispatch = "firefox" },
-	{ key = { "o" }, dispatch = "google-chrome-stable" },
+	-- Browser
+	{ key = { "f" }, dispatch = "google-chrome-stable" },
 
 	-- File browser
 	{ key = { "s" }, dispatch = "nemo" },
+
+	-- Clipboard manager
+	{
+		key = { "v" },
+		dispatch = function()
+			hl.exec_cmd("sh -c 'cliphist list | fuzzel --dmenu | cliphist decode | wl-copy'")
+		end,
+	},
 
 	---- Move windows
 	{ key = { "k" }, dispatch = hl.dsp.focus({ direction = "up" }) },

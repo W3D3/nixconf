@@ -34,9 +34,9 @@ Modifier key: `Super` (Windows key)
 |---|---|
 | `Super + Return` | Terminal (Kitty) |
 | `Super + d` | App launcher (otter-launcher) |
-| `Super + f` | Firefox |
-| `Super + o` | Chrome |
+| `Super + f` | Chrome |
 | `Super + s` | File browser (Nemo) |
+| `Super + v` | Clipboard history picker (fuzzel) |
 
 ## Misc
 
