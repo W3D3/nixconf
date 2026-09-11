@@ -28,7 +28,8 @@
         package = self'.packages.hyprland;
       };
 
-      services.displayManager.defaultSession = "hyprland";
+      # Hyprland is available as a session in SDDM; select it manually at login.
+      # Do not force it as the default to keep KDE as the fallback.
       services.xserver.enable = true;
       security.polkit.enable = true;
 
@@ -73,26 +74,6 @@
         XCURSOR_THEME = "Bibata-Modern-Ice";
         XCURSOR_SIZE = "20";
       };
-
-      programs.dconf = {
-        enable = true;
-        profiles.user.databases = [
-          {
-            lockAll = false;
-            settings = {
-              "org/gnome/desktop/interface" = {
-                gtk-theme = lib.gvariant.mkString "catppuccin-mocha-mauve-compact+rimless";
-                icon-theme = lib.gvariant.mkString "Papirus";
-                color-scheme = lib.gvariant.mkString "prefer-dark";
-                cursor-theme = lib.gvariant.mkString "Bibata-Modern-Ice";
-                font-name = lib.gvariant.mkString "FiraMono Nerd Font 11";
-              };
-            };
-          }
-        ];
-      };
-
-      programs.xfconf.enable = true;
 
       system.activationScripts.hyprRuntimeEnv = lib.stringAfter [ "specialfs" ] ''
         mkdir -p /run/hypr-runtime-env/bin
