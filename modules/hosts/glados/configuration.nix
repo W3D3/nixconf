@@ -158,6 +158,7 @@
       services.gvfs.enable = true;
       services.gnome.gnome-keyring.enable = true;
       security.pam.services.login.enableGnomeKeyring = true;
+      security.pam.services.sddm.enableKwallet = true;
 
       # Tailscale
       services.tailscale.enable = true;
