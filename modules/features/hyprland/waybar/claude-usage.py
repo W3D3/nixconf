@@ -27,8 +27,13 @@ def model_tier(model: str) -> str:
     return "sonnet"
 
 
-def file_cost(path: Path):
-    """Return (cost_usd, ts_first, ts_last) for a JSONL conversation file."""
+def file_cost(path: Path, since: datetime = None):
+    """Return (cost_usd, ts_first, ts_last) for a JSONL conversation file.
+
+    ts_last  — absolute last timestamp in the file.
+    ts_first — earliest timestamp at or after `since` (or absolute first if since=None).
+    cost     — only messages at or after `since` are counted.
+    """
     cost = 0.0
     ts_first = ts_last = None
     seen: set = set()
@@ -51,10 +56,15 @@ def file_cost(path: Path):
                     seen.add(key)
 
                 ts = datetime.fromisoformat(d["timestamp"].replace("Z", "+00:00"))
-                if ts_first is None or ts < ts_first:
-                    ts_first = ts
+
                 if ts_last is None or ts > ts_last:
                     ts_last = ts
+
+                if since is not None and ts < since:
+                    continue
+
+                if ts_first is None or ts < ts_first:
+                    ts_first = ts
 
                 msg = d.get("message") or {}
                 u = msg.get("usage") or {}
@@ -73,11 +83,6 @@ def file_cost(path: Path):
     return cost, ts_first, ts_last
 
 
-def bar(pct: float, width: int = 8) -> str:
-    filled = round(min(pct, 100) / 100 * width)
-    return "█" * filled + "░" * (width - filled)
-
-
 def main():
     projects = Path.home() / ".claude" / "projects"
     if not projects.exists():
@@ -86,6 +91,10 @@ def main():
 
     now = datetime.now(timezone.utc)
     week_ago = now - timedelta(days=7)
+    # Rate-limit window: only count messages in the last SESSION_HOURS hours.
+    # This matches how Claude's server tracks the 5-hour rolling window,
+    # even if the JSONL file contains older messages from compacted sessions.
+    window_cutoff = now - timedelta(hours=SESSION_HOURS)
 
     # Only look at files modified in the last 7 days for performance
     jsonl_files = sorted(
@@ -97,29 +106,29 @@ def main():
         print(json.dumps({"text": " –", "tooltip": "No recent sessions", "class": "idle"}))
         return
 
-    # Current session = most recently modified file
+    # Current session = most recently modified file, cost only within current 5-hour window
     try:
-        session_cost, ts_first, ts_last = file_cost(jsonl_files[0])
+        session_cost, ts_window_first, _ = file_cost(jsonl_files[0], since=window_cutoff)
     except Exception as e:
         print(json.dumps({"text": " err", "tooltip": str(e), "class": "error"}))
         return
 
-    # Time remaining in rate-limit window
+    # Time remaining: based on first message inside the current rate-limit window
     time_left = ""
-    if ts_first:
-        reset_at = ts_first + timedelta(hours=SESSION_HOURS)
+    if ts_window_first:
+        reset_at = ts_window_first + timedelta(hours=SESSION_HOURS)
         rem = reset_at - now
         if rem.total_seconds() > 0:
             h, m = divmod(int(rem.total_seconds()) // 60, 60)
             time_left = f"{h}h{m:02d}m"
 
-    # Weekly totals
+    # Weekly totals — count messages from the last 7 days across all recent files
     weekly_cost = 0.0
     weekly_sessions = 0
     for f in jsonl_files:
         try:
-            cost, _, fts_last = file_cost(f)
-            if fts_last and fts_last >= week_ago:
+            cost, ts_w_first, _ = file_cost(f, since=week_ago)
+            if ts_w_first is not None:
                 weekly_cost += cost
                 weekly_sessions += 1
         except Exception:

@@ -144,6 +144,9 @@
       # Enable Flipper Zero support
       hardware.flipperzero.enable = true;
 
+      hardware.bluetooth.enable = true;
+      hardware.bluetooth.powerOnBoot = true;
+
       # 1Password
       programs._1password.enable = true;
       programs._1password-gui = {

@@ -156,3 +156,13 @@ window#waybar {
   color: #1e1e2e;
 }
 
+#custom-claude {
+  background-color: #cba6f7;
+  color: #1e1e2e;
+}
+
+#custom-claude.idle {
+  background-color: rgba(203, 166, 247, 0.3);
+  color: #cdd6f4;
+}
+

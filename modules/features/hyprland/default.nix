@@ -175,6 +175,7 @@
           flags."--config" = "/run/hypr/config/hyprland.lua";
           env."MODULES_ROOT" = "/run/hypr/config/modules";
           env."HYPRLAND_ROOT" = "/run/hypr/config";
+          env."AQ_NO_MODIFIERS" = "1";
           runtimePackages =
             inputs.voidarcHypr.lib.defaultRuntimePkgs.${system}
             // {
@@ -244,7 +245,6 @@
                 "mpris"
               ],
               "modules-right": [
-                "custom/claude",
                 "network",
                 "bluetooth",
                 "custom/notifs",

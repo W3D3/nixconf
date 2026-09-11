@@ -4,6 +4,7 @@ local appList = {
 	"quickshell",
 	"nm-applet --indicator",
 	"wl-paste --watch cliphist store",
+	"waybar",
 }
 
 hl.on("hyprland.start", function()
