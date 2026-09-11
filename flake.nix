@@ -31,6 +31,35 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    voidarcHypr.url = "git+https://git.voidarc.co.uk/voidarc/hypr";
+
+    hyprgrass = {
+      url = "github:horriblename/hyprgrass";
+      inputs.hyprland.follows = "voidarcHypr/hyprland";
+    };
+
+    otter-launcher = {
+      url = "github:kuokuo123/otter-launcher";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    gotify-desktop = {
+      url = "github:voidarclabs/gotify-desktop";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    quickshell = {
+      url = "git+https://git.voidarc.co.uk/voidarc/quickshell";
+      flake = false;
+    };
+
+    woomer = {
+      url = "github:voidarclabs/woomer";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    wshowkeys.url = "github:DreamMaoMao/wshowkeys";
+
     libfprint-goodix53x5 = {
       url = "github:W3D3/libfprint/85a7ba93daa064dfdba47fdedf29bd9c12168aae";
       flake = false;

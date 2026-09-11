@@ -16,6 +16,7 @@
         self.nixosModules.git
         self.nixosModules.mimeapps
         self.nixosModules.devenv
+        self.nixosModules.hyprland
       ];
 
       nix.settings.experimental-features = [
