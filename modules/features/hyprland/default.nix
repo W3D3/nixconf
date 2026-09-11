@@ -255,20 +255,11 @@
           '';
         };
 
-        quickshell =
-          let
-            patchedConfig = pkgs.runCommand "quickshell-config-patched" { } ''
-              cp -r ${inputs.quickshell}/. $out
-              chmod -R u+w $out
-              substituteInPlace $out/Bar/Bluetooth.qml \
-                --replace-fail 'forceHidden: !BluetoothManager.anyConnected' 'forceHidden: false'
-            '';
-          in
-          inputs.wrapper-modules.wrappers.quickshell.wrap {
-            inherit pkgs;
-            configDir = patchedConfig;
-            configFile = "${patchedConfig}/shell.qml";
-          };
+        quickshell = inputs.wrapper-modules.wrappers.quickshell.wrap {
+          inherit pkgs;
+          configDir = ./quickshell;
+          configFile = "${./quickshell}/shell.qml";
+        };
 
         otter-launcher =
           let
