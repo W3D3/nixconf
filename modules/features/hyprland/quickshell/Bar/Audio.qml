@@ -87,7 +87,7 @@ Container {
       StyledText {
         color: Colors.subtext1
         fontSize: 10
-        implicitHeight: root.sectionLabelHeight
+        height: root.sectionLabelHeight
         leftPadding: 8
         text: "OUTPUT"
       }
@@ -168,7 +168,7 @@ Container {
       StyledText {
         color: Colors.subtext1
         fontSize: 10
-        implicitHeight: root.sectionLabelHeight
+        height: root.sectionLabelHeight
         leftPadding: 8
         text: "INPUT"
         topPadding: 2
