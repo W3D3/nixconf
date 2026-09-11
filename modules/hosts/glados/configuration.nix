@@ -14,6 +14,8 @@
         self.nixosModules.mail
         self.nixosModules.shell
         self.nixosModules.git
+        self.nixosModules.mimeapps
+        self.nixosModules.devenv
       ];
 
       nix.settings.experimental-features = [
@@ -126,8 +128,9 @@
       # Install firefox.
       programs.firefox.enable = true;
 
-      # Steam
+      # Steam + Proton
       programs.steam.enable = true;
+      programs.steam.extraCompatPackages = with pkgs; [ proton-ge-bin ];
       hardware.graphics.enable32Bit = true;
 
       fonts.packages = [ pkgs.nerd-fonts.jetbrains-mono ];
@@ -159,6 +162,7 @@
 
       # KVM / Virt-Manager
       virtualisation.libvirtd.enable = true;
+      virtualisation.libvirtd.qemu.swtpm.enable = true;
       programs.virt-manager.enable = true;
 
       # iOS device support

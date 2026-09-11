@@ -13,6 +13,9 @@
             autosuggestion.enable = true;
             syntaxHighlighting.enable = true;
             completionInit = "autoload -U compinit && compinit -u";
+            initContent = ''
+              eval "$(devenv hook zsh)"
+            '';
             shellAliases = {
               clip = "wl-copy";
               rebuild = "sudo nixos-rebuild switch --flake ~/nixconf#glados --impure";

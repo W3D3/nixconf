@@ -26,6 +26,11 @@
 
     hunk.url = "github:modem-dev/hunk";
 
+    devenv = {
+      url = "github:cachix/devenv";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     libfprint-goodix53x5 = {
       url = "github:W3D3/libfprint/85a7ba93daa064dfdba47fdedf29bd9c12168aae";
       flake = false;

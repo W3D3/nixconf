@@ -72,6 +72,7 @@
               obsidian
               spotify
               qbittorrent
+              bottles
               pico8
               jetbrains-toolbox
 
@@ -94,15 +95,16 @@
               libreoffice
               inputs.iloader.packages.${pkgs.stdenv.hostPlatform.system}.default
               inputs.hunk.packages.${pkgs.stdenv.hostPlatform.system}.default
+              google-cloud-sdk
+              materialgram
+              nchat
+              n8n
             ];
 
             home.sessionVariables = {
               HASS_SERVER = "https://homeassistant.wedenig.xyz";
             };
 
-            programs.zsh.initContent = ''
-              export HASS_TOKEN=$(op read "op://Personal/gdtwwssmzb7z6eswd5rf7ufhde/apitoken" 2>/dev/null)
-            '';
 
             programs.go = {
               enable = true;
@@ -110,11 +112,6 @@
             };
 
             home.sessionPath = [ "${config.home.homeDirectory}/go/bin" ];
-
-            programs.direnv = {
-              enable = true;
-              nix-direnv.enable = true;
-            };
 
             programs.plasma.hotkeys.commands."launch-ghostty" = {
               name = "Launch Ghostty";
@@ -125,6 +122,8 @@
             programs.plasma.shortcuts = {
               kwin."MaximizeActiveWindow" = "Meta+Shift+Up";
             };
+
+            programs.plasma.configFile."kdeglobals"."General"."BrowserApplication" = "com.google.Chrome.desktop";
 
             programs.plasma.configFile."kcminputrc"."Mouse"."XLbInptMiddleButtonPaste" = false;
 

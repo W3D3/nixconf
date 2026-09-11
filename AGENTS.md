@@ -49,6 +49,50 @@ modules/
     telegram.nix        # AyuGram Desktop with custom binary cache
 ```
 
+## Adding a new feature module (Dendritic Pattern)
+
+Every `.nix` file under `modules/` is auto-imported by `import-tree` as a **flake-parts module** — no manual registration needed. Each file should expose its NixOS content by writing into `flake.nixosModules.<name>`, which flake-parts merges into the flake outputs.
+
+**Step 1 — create the file** at `modules/features/<name>.nix`:
+
+```nix
+{ inputs, ... }:
+{
+  flake.nixosModules.<name> =
+    { pkgs, ... }:
+    {
+      # NixOS options here, e.g. environment.systemPackages, services.*, etc.
+    };
+}
+```
+
+If the feature configures home-manager, import the home-manager NixOS module and nest under `home-manager.users.wedenigc`:
+
+```nix
+{ inputs, ... }:
+{
+  flake.nixosModules.<name> =
+    { pkgs, ... }:
+    {
+      imports = [ inputs.home-manager.nixosModules.home-manager ];
+
+      home-manager.users.wedenigc =
+        { pkgs, ... }:
+        {
+          # home-manager options here
+        };
+    };
+}
+```
+
+**Step 2 — wire it in** by adding `self.nixosModules.<name>` to the `imports` list in `modules/hosts/glados/configuration.nix`. The file is auto-discovered by import-tree, but the NixOS module must be explicitly imported to take effect.
+
+**Rules:**
+- One file = one feature. Name the file after the feature it enables.
+- Never add entries to a manual `imports = [ ]` list inside a feature file itself — let `configuration.nix` do the wiring.
+- Non-module files (e.g. packages defined with `callPackage`) should use a `.pkg.nix` suffix to be excluded from auto-import if needed.
+- Always use `flake.nixosModules.<name>` (not bare `nixosModules`) — the `flake.` prefix is how flake-parts merges it into the flake output.
+
 ## How modules are connected
 
 - `flake.nix` uses `flake-parts` and `import-tree` to load everything under `modules/`.
