@@ -154,6 +154,10 @@ Scope {
 			monitor: win.monitor
 		  }
 
+		  Audio {
+			monitor: win.monitor
+		  }
+
 		  Battery {
 			monitor: win.monitor
 		  }
