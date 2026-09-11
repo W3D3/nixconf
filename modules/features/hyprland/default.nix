@@ -55,6 +55,7 @@
           pavucontrol
           fsel
           bluetui
+          networkmanagerapplet
         ]
         ++ (with self'.packages; [
           hyprland
@@ -88,6 +89,7 @@
 
       system.activationScripts.hyprConfig =
         let
+          upstream = inputs'.voidarcHypr.packages.repo-files;
           pluginFile = pkgs.writeText "plugins.lua" ''
             hl.on("hyprland.start", function ()
             end)
@@ -98,11 +100,28 @@
           '';
         in
         lib.stringAfter [ "specialfs" ] ''
-          mkdir -p /run/hypr/config
-          rm -rf /run/hypr/config/*
-          ln -sfn ${inputs'.voidarcHypr.packages.repo-files}/* /run/hypr/config
+          rm -rf /run/hypr/config
+          mkdir -p /run/hypr/config/modules/settings
+
+          # Top-level files
+          ln -sfn ${upstream}/autoload.lua /run/hypr/config/autoload.lua
+          ln -sfn ${upstream}/hyprland.lua /run/hypr/config/hyprland.lua
           ln -sfn ${pluginFile} /run/hypr/config/plugins.lua
           ln -sfn ${runtimeFile} /run/hypr/config/runtime.lua
+
+          # Upstream modules kept as-is
+          ln -sfn ${upstream}/modules/mocha.lua /run/hypr/config/modules/mocha.lua
+          ln -sfn ${upstream}/modules/rules.lua /run/hypr/config/modules/rules.lua
+          ln -sfn ${upstream}/modules/tablet.lua /run/hypr/config/modules/tablet.lua
+          ln -sfn ${upstream}/modules/settings/animations.lua /run/hypr/config/modules/settings/animations.lua
+          ln -sfn ${upstream}/modules/settings/style.lua /run/hypr/config/modules/settings/style.lua
+
+          # Local overrides
+          ln -sfn ${./config/binds.lua} /run/hypr/config/modules/binds.lua
+          ln -sfn ${./config/monitors.lua} /run/hypr/config/modules/monitors.lua
+          ln -sfn ${./config/events.lua} /run/hypr/config/modules/events.lua
+          ln -sfn ${./config/settings/input.lua} /run/hypr/config/modules/settings/input.lua
+          ln -sfn ${./config/local-rules.lua} /run/hypr/config/modules/local-rules.lua
         '';
     }
   );
@@ -210,7 +229,7 @@
           let
             extra-config = ''
               [overlay]
-              overlay_cmd = "${pkgs.lib.getExe self'.packages.kitty} +kitten icat --fit height --align left --no-trailing-newline ${./otter-launcher/cat.png}"
+              overlay_cmd = "${pkgs.kitty}/bin/kitten icat --fit height --align left --no-trailing-newline ${./otter-launcher/cat.png}"
               overlay_trimmed_lines = 0
             '';
             final-config = pkgs.writeText "config.toml" ''
