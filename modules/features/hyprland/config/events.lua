@@ -2,7 +2,6 @@ local appList = {
 	"wpaperd -d",
 	"gotify-desktop",
 	"quickshell",
-	"waybar",
 	"nm-applet --indicator",
 	"wl-paste --watch cliphist store",
 }

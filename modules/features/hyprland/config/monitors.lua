@@ -21,7 +21,7 @@ local function updateLaptopDisplay()
 	if hasExternal then
 		hl.monitor({ output = "eDP-1", disabled = true })
 	else
-		hl.monitor({ output = "eDP-1", mode = "preferred", position = "0x0", scale = "1" })
+		hl.monitor({ output = "eDP-1", mode = "preferred", position = "0x0", scale = "1.5" })
 	end
 end
 
