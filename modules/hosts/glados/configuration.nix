@@ -18,6 +18,7 @@
         self.nixosModules.devenv
         self.nixosModules.hyprland
         self.nixosModules.telegramtui
+        self.nixosModules.iosDevices
       ];
 
       nix.settings.experimental-features = [
@@ -170,9 +171,6 @@
       virtualisation.libvirtd.enable = true;
       virtualisation.libvirtd.qemu.swtpm.enable = true;
       programs.virt-manager.enable = true;
-
-      # iOS device support
-      services.usbmuxd.enable = true;
 
       # Fingerprint reader — see modules/hosts/glados/fingerprint.nix
 
