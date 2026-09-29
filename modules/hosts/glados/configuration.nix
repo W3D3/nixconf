@@ -8,7 +8,6 @@
       imports = [
         self.nixosModules.gladosHardware
         self.nixosModules.gladosFingerprint
-        self.nixosModules.niri
         self.nixosModules.homeWedenigc
         self.nixosModules.telegram
         self.nixosModules.mail
@@ -16,7 +15,6 @@
         self.nixosModules.git
         self.nixosModules.mimeapps
         self.nixosModules.devenv
-        self.nixosModules.hyprland
         self.nixosModules.telegramtui
         self.nixosModules.iosDevices
       ];
@@ -30,6 +28,11 @@
       # Bootloader.
       boot.loader.systemd-boot.enable = true;
       boot.loader.efi.canTouchEfiVariables = true;
+      # Cap boot entries so the small 96 MiB ESP can't accumulate unbounded
+      # generations. Entries themselves are tiny; kernel/initrd (~55 MiB per
+      # distinct build) dedupe across generations that share them, so 10 fits
+      # fine as long as they don't all reference distinct kernels/initrds.
+      boot.loader.systemd-boot.configurationLimit = 10;
 
       # Use latest kernel.
       boot.kernelPackages = pkgs.linuxPackages_latest;

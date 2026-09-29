@@ -11,7 +11,7 @@
         backupFileExtension = "bkp";
         sharedModules = [
           inputs.plasma-manager.homeModules.plasma-manager
-          inputs.meridian.homeManagerModules.default
+          inputs.meridian.homeModules.default
         ];
         users.wedenigc =
           {
@@ -44,6 +44,21 @@
                   ])}
               '';
               meta.mainProgram = "pico8";
+            };
+            sprout = pkgs.stdenv.mkDerivation {
+              pname = "sprout";
+              version = "0.8.1";
+              src = pkgs.fetchurl {
+                url = "https://github.com/simpros/sprout/releases/download/v0.8.1/sprout-linux-x64-musl";
+                hash = "sha256-gkwZbzzScHIW9/Q+py4UMdbVb052nYFv17YlgSu17XU=";
+              };
+              dontUnpack = true;
+              installPhase = ''
+                mkdir -p $out/bin
+                cp $src $out/bin/sprout
+                chmod +x $out/bin/sprout
+              '';
+              meta.mainProgram = "sprout";
             };
           in
           {
@@ -97,10 +112,12 @@
               libreoffice
               inputs.iloader.packages.${pkgs.stdenv.hostPlatform.system}.default
               inputs.hunk.packages.${pkgs.stdenv.hostPlatform.system}.default
+              inputs.crit.packages.${pkgs.stdenv.hostPlatform.system}.default
               google-cloud-sdk
               materialgram
               nchat
               n8n
+              sprout
             ];
 
             home.sessionVariables = {
@@ -158,6 +175,14 @@
               mkdir -p $HOME/mnt/hades
             '';
 
+            home.activation.claudeCodePlugins = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+              settings="$HOME/.claude/settings.json"
+              if [ -f "$settings" ]; then
+                tmp=$(${pkgs.jq}/bin/jq '.enabledPlugins["crit@crit"] = true' "$settings")
+                echo "$tmp" > "$settings"
+              fi
+            '';
+
             systemd.user.mounts."home-wedenigc-mnt-hades" = {
               Unit.Description = "SSHFS mount for hades.local";
               Mount = {
@@ -177,6 +202,7 @@
               };
               Install.WantedBy = [ "default.target" ];
             };
+
 
             xdg.configFile."opencode/opencode.json".text = builtins.toJSON {
               plugin = [
