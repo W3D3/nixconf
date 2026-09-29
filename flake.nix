@@ -26,6 +26,8 @@
 
     hunk.url = "github:modem-dev/hunk";
 
+    crit.url = "github:tomasz-tomczyk/crit";
+
     devenv = {
       url = "github:cachix/devenv";
       inputs.nixpkgs.follows = "nixpkgs";
