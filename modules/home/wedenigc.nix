@@ -60,6 +60,22 @@
               '';
               meta.mainProgram = "sprout";
             };
+            namecheap-cli = pkgs.stdenv.mkDerivation {
+              pname = "namecheap-cli";
+              version = "1.0.0";
+              src = pkgs.fetchurl {
+                url = "https://github.com/uRadical/namecheap-cli/releases/download/v1.0.0/namecheap-x86_64-unknown-linux-musl.tar.gz";
+                hash = "sha256-qSl74gNsWRhcV8cqZpXdKG5xdBzbiPKaTn73C1R4IgI=";
+              };
+              dontUnpack = true;
+              installPhase = ''
+                mkdir -p $out/bin
+                tar xzf $src -C $out/bin
+                chmod +x $out/bin/namecheap
+              '';
+              # Static musl binary; runs on NixOS without patchelf.
+              meta.mainProgram = "namecheap";
+            };
           in
           {
             home.username = "wedenigc";
@@ -118,6 +134,8 @@
               nchat
               n8n
               sprout
+              namecheap-cli
+              ducker
             ];
 
             home.sessionVariables = {
@@ -210,6 +228,20 @@
                 "@rynfar/meridian-plugin-opencode-scrub"
               ];
             };
+
+            # ducker (docker TUI) themed with Catppuccin Mocha (Mauve accent).
+            xdg.configFile."ducker/config.yaml".text = ''
+              theme:
+                use_theme: true
+                title: "#cba6f7"              # mauve
+                help: "#89dceb"               # sky
+                background: "#1e1e2e"         # base
+                footer: "#94e2d5"             # teal
+                success: "#a6e3a1"            # green
+                error: "#f38ba8"              # red
+                positive_highlight: "#cba6f7" # mauve (selection)
+                negative_highlight: "#eba0ac" # maroon (delete)
+            '';
           };
       };
     };
