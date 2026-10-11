@@ -8,6 +8,11 @@
       home-manager.users.wedenigc =
         { ... }:
         {
+          # KDE Plasma rewrites ~/.config/mimeapps.list as a real file, so each
+          # activation after KDE touches it would otherwise fail trying to back
+          # up the non-symlink. Force HM to overwrite it instead of backing up.
+          xdg.configFile."mimeapps.list".force = true;
+
           xdg.mimeApps = {
             enable = true;
             defaultApplications = {
