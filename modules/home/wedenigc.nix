@@ -25,23 +25,31 @@
               pname = "pico-8";
               version = "0.2.7";
               src = /home/wedenigc/Documents/pico-8_0.2.7_amd64.zip;
-              nativeBuildInputs = with pkgs; [ unzip makeWrapper ];
+              nativeBuildInputs = with pkgs; [
+                unzip
+                makeWrapper
+              ];
               unpackPhase = "unzip $src";
               installPhase = ''
                 mkdir -p $out/bin $out/share/pico-8
                 cp -r pico-8/. $out/share/pico-8/
                 chmod +x $out/share/pico-8/pico8
                 makeWrapper $out/share/pico-8/pico8 $out/bin/pico8 \
-                  --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath (with pkgs; [
-                    SDL2
-                    alsa-lib
-                    libGL
-                    libX11
-                    libXcursor
-                    libXrandr
-                    libXinerama
-                    libXi
-                  ])}
+                  --prefix LD_LIBRARY_PATH : ${
+                    pkgs.lib.makeLibraryPath (
+                      with pkgs;
+                      [
+                        SDL2
+                        alsa-lib
+                        libGL
+                        libX11
+                        libXcursor
+                        libXrandr
+                        libXinerama
+                        libXi
+                      ]
+                    )
+                  }
               '';
               meta.mainProgram = "pico8";
             };
@@ -136,12 +144,12 @@
               sprout
               namecheap-cli
               ducker
+              herdr
             ];
 
             home.sessionVariables = {
               HASS_SERVER = "https://homeassistant.wedenig.xyz";
             };
-
 
             programs.go = {
               enable = true;
@@ -160,7 +168,8 @@
               kwin."MaximizeActiveWindow" = "Meta+Shift+Up";
             };
 
-            programs.plasma.configFile."kdeglobals"."General"."BrowserApplication" = "com.google.Chrome.desktop";
+            programs.plasma.configFile."kdeglobals"."General"."BrowserApplication" =
+              "com.google.Chrome.desktop";
 
             programs.plasma.configFile."kcminputrc"."Mouse"."XLbInptMiddleButtonPaste" = false;
 
@@ -221,7 +230,6 @@
               Install.WantedBy = [ "default.target" ];
             };
 
-
             xdg.configFile."opencode/opencode.json".text = builtins.toJSON {
               plugin = [
                 config.services.meridian.opencode.pluginPath
@@ -242,6 +250,27 @@
                 positive_highlight: "#cba6f7" # mauve (selection)
                 negative_highlight: "#eba0ac" # maroon (delete)
             '';
+
+            # herdr (agent multiplexer); defaults: `herdr --default-config`.
+            xdg.configFile."herdr/config.toml".source = (pkgs.formats.toml { }).generate "herdr-config.toml" {
+              onboarding = false;
+              theme = {
+                name = "catppuccin";
+                custom.accent = "#cba6f7"; # mauve
+              };
+              # Updates come from nixpkgs, not `herdr update`.
+              update.version_check = false;
+              ui.toast.delivery = "system";
+              keys.command = [
+                {
+                  key = "prefix+alt+g";
+                  type = "popup";
+                  command = "lazygit";
+                  width = "80%";
+                  height = "80%";
+                }
+              ];
+            };
           };
       };
     };
