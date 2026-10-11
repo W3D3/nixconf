@@ -17,6 +17,8 @@
         self.nixosModules.devenv
         self.nixosModules.telegramtui
         self.nixosModules.iosDevices
+        self.nixosModules.dartcadeDev
+        self.nixosModules.photocraft
       ];
 
       nix.settings.experimental-features = [

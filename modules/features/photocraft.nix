@@ -13,7 +13,7 @@
         hash = "sha256-KeMBH0mlLqJcj+QEJYpsX62wIJTbtAqITWnmuoCOYTY=";
       };
 
-      appimageContents = pkgs.appimageTools.extractType2 { inherit pname version src; };
+      appimageContents = pkgs.appimageTools.extract { inherit pname version src; };
 
       photocraft = pkgs.appimageTools.wrapType2 {
         inherit pname version src;
