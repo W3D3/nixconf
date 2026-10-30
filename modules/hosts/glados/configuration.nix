@@ -10,6 +10,7 @@
         self.nixosModules.gladosFingerprint
         self.nixosModules.homeWedenigc
         self.nixosModules.telegram
+        self.nixosModules.cloudflared
         self.nixosModules.mail
         self.nixosModules.shell
         self.nixosModules.git
