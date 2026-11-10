@@ -239,7 +239,8 @@
       # services.openssh.enable = true;
 
       # Open ports in the firewall.
-      # networking.firewall.allowedTCPPorts = [ ... ];
+      # Agent Orchestrator
+      networking.firewall.allowedTCPPorts = [ 3011 ];
       # networking.firewall.allowedUDPPorts = [ ... ];
       # Or disable the firewall altogether.
       # networking.firewall.enable = false;
