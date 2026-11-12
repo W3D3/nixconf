@@ -169,7 +169,7 @@
             };
 
             programs.plasma.configFile."kdeglobals"."General"."BrowserApplication" =
-              "com.google.Chrome.desktop";
+              "firefox.desktop";
 
             programs.plasma.configFile."kcminputrc"."Mouse"."XLbInptMiddleButtonPaste" = false;
 

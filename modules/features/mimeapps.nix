@@ -16,11 +16,11 @@
           xdg.mimeApps = {
             enable = true;
             defaultApplications = {
-              "text/html" = "com.google.Chrome.desktop";
-              "x-scheme-handler/http" = "com.google.Chrome.desktop";
-              "x-scheme-handler/https" = "com.google.Chrome.desktop";
-              "x-scheme-handler/about" = "com.google.Chrome.desktop";
-              "x-scheme-handler/unknown" = "com.google.Chrome.desktop";
+              "text/html" = "firefox.desktop";
+              "x-scheme-handler/http" = "firefox.desktop";
+              "x-scheme-handler/https" = "firefox.desktop";
+              "x-scheme-handler/about" = "firefox.desktop";
+              "x-scheme-handler/unknown" = "firefox.desktop";
               "x-scheme-handler/pie" = "httpie.desktop";
               "application/x-matroska" = "vlc.desktop";
               "video/3gp" = "vlc.desktop";
